@@ -1,0 +1,48 @@
+\documentclass[10pt,a1paper]{memoir}
+\usepackage{graphicx}
+\usepackage{forest}
+\usepackage{tikz-qtree}
+\usepackage[english]{babel}
+\usepackage[paperwidth=30in]{geometry}
+\begin{document}
+
+Grammar:
+
+\textsl{\textless S\textgreater} ::= \textit{a};\\
+
+\textsl{Input string:} a
+
+\textbf{Derivation tree:}
+
+\begin{forest} for tree={edge path={\noexpand\path[\forestoption{edge}] (\forestOve{\forestove{@parent}}{name}.parent anchor) -- +(0,-12pt)-| (\forestove{name}.child anchor)\forestoption{edge label};}}
+[[\textsl{\textless S\textgreater}[\textit{a}]], [\$]]
+\end{forest}
+
+
+
+\begin{center}
+\textsl{Additional tables:}
+
+\begin{tabular}{ |c||c|c|c| }
+\hline
+ & Derives $\varepsilon$ & FIRST table & FOLLOW table \\
+\hline\hline
+\textsl{\textless S\textgreater} & false & \{\textit{a}\} & \{\$\}\\
+\hline
+\end{tabular}
+
+\end{center}     
+
+\begin{center}
+\textsl{LL(1) table}
+
+\begin{tabular}{ |c||c| }
+\hline
+ & \textit{a} \\
+\hline\hline
+\textsl{\textless S\textgreater} & \textit{a}\\
+\hline
+\end{tabular}
+
+\end{center}
+\end{document}

@@ -1,0 +1,3 @@
+<kleene> ::= 'a' <kleene'>;
+<kleene'> ::= <eps> | <kleene>;
+<eps> ::= '';

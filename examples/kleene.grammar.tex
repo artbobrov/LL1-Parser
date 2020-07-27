@@ -1,0 +1,53 @@
+\documentclass[10pt,a1paper]{memoir}
+\usepackage{graphicx}
+\usepackage{forest}
+\usepackage{tikz-qtree}
+\usepackage[english]{babel}
+\usepackage[paperwidth=30in]{geometry}
+\begin{document}
+
+Grammar:
+
+\textsl{\textless kleene\textgreater} ::= \textsl{\textless eps\textgreater} | \textit{a} \textsl{\textless kleene\textgreater};
+
+\textsl{\textless eps\textgreater} ::= $\varepsilon$;\\
+
+\textsl{Input string:} a, a, a, a, a
+
+\textbf{Derivation tree:}
+
+\begin{forest} for tree={edge path={\noexpand\path[\forestoption{edge}] (\forestOve{\forestove{@parent}}{name}.parent anchor) -- +(0,-12pt)-| (\forestove{name}.child anchor)\forestoption{edge label};}}
+[[\textsl{\textless kleene\textgreater}[\textit{a}], [\textsl{\textless kleene\textgreater}[\textit{a}], [\textsl{\textless kleene\textgreater}[\textit{a}], [\textsl{\textless kleene\textgreater}[\textit{a}], [\textsl{\textless kleene\textgreater}[\textit{a}], [\textsl{\textless kleene\textgreater}[\textsl{\textless eps\textgreater}[$\varepsilon$]]]]]]]], [\$]]
+\end{forest}
+
+
+
+\begin{center}
+\textsl{Additional tables:}
+
+\begin{tabular}{ |c||c|c|c| }
+\hline
+ & Derives $\varepsilon$ & FIRST table & FOLLOW table \\
+\hline\hline
+\textsl{\textless kleene\textgreater} & true & \{\textit{a}, $\varepsilon$\} & \{\$\}\\ \hline
+\textsl{\textless eps\textgreater} & true & \{$\varepsilon$\} & \{\$\}\\
+\hline
+\end{tabular}
+
+\end{center}     
+
+\begin{center}
+\textsl{LL(1) table}
+
+\begin{tabular}{ |c||c|c|c| }
+\hline
+ & \$ & \textit{a} & \$ \\
+\hline\hline
+\textsl{\textless kleene\textgreater} & \textsl{\textless eps\textgreater} & \textit{a} \textsl{\textless kleene\textgreater} & \textsl{\textless eps\textgreater}\\ \hline
+\textsl{\textless kleene\textgreater} & \textsl{\textless eps\textgreater} & \textit{a} \textsl{\textless kleene\textgreater} & \textsl{\textless eps\textgreater}\\ \hline
+\textsl{\textless eps\textgreater} & $\varepsilon$ &  & $\varepsilon$\\
+\hline
+\end{tabular}
+
+\end{center}
+\end{document}
